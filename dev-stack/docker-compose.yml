@@ -1,0 +1,37 @@
+version: "3.3"
+
+services:
+
+  dnsmasq:
+    image: andyshinn/dnsmasq
+    cap_add:
+      - NET_ADMIN
+    restart: always
+    ports:
+      - "53:53/udp"
+      - "53:53/tcp"
+    volumes:
+      - ./dnsmasq/dnsmasq.conf:/etc/dnsmasq.conf
+    command: --log-facility=-
+
+  traefik:
+    image: "traefik:v2.2"
+    container_name: "traefik"
+    restart: always
+    command:
+      - "--log.level=DEBUG"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./traefik/trafik.yml:/etc/traefik/traefik.yml"
+
+networks:
+  default:
+    external:
+      name: dev-network
