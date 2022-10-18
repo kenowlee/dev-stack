@@ -53,6 +53,7 @@ managed=false
 
 [device]
 wifi.scan-rand-mac-address=no
+```
 
 ## Run the stack
 
