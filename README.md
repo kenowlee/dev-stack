@@ -61,6 +61,9 @@ Junto dessa stack há dois scripts que podem ser executados para fazer todas as 
 
 O script start-dev.sh inicia a stack e configura o Dnsserver. Já o script init-project.sh faz um clone do projeto base do git inicia um container e instala um novo laravel.
 
+### Run the stack and Painel
+O script painel-start-dev.sh inicia ,stack o painel e configura o Dnsserver. Já o script painel-stop-dev.sh derruba os conteiners. 
+
 ## Standard project docker-compose file
 ```yaml
 version: '3.2'
