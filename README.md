@@ -55,6 +55,28 @@ managed=false
 wifi.scan-rand-mac-address=no
 ```
 
+É possível que ao derrubar o serviço sua conexão tenha problemas. Nesse caso é necessário habilitar a configuração do dns editando o arquivo **/etc/NetworkManager/NetworkManager.conf** :
+```console
+dns=default
+```
+
+O NetworkManager.conf default é:
+```console
+[main]
+plugins=ifupdown,keyfile
+dns=default
+
+[ifupdown]
+managed=false
+
+[device]
+wifi.scan-rand-mac-address=no
+```
+
+Agora reinicie o serviço de gerenciamento de rede:
+```
+sudo systemctl restart NetworkManager
+```
 ## Run the stack
 
 Junto dessa stack há dois scripts que podem ser executados para fazer todas as instalações e configurações necessárias. Eles foram criados para rodar a stack em um ambiente Linux. Cada máquina possui configurações únicas, então esses scripts podem não se comportar como esperado em todas as situações.
